@@ -12,7 +12,19 @@ export default {
   computed: {
     cityName() {
       return "«" + this.city + "»"
-    }
+    },
+    showTemp() {
+      return "Temperature: " + this.info.main.temp
+    },
+    showFeelsLike() {
+      return "Feels like: " + this.info.main.feels_like
+    },
+    showMinTemp() {
+      return "Minimum Temperature: " + this.info.main.temp_min
+    },
+    showMaxTemp() {
+      return "Maximum Temperature: " + this.info.main.temp_max
+    },
   },
   methods: {
     getWeather(){
@@ -23,7 +35,7 @@ export default {
       this.error = ""
       // f26dfc5ea8666e6aff21508b687b8194
       axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&appid=f26dfc5ea8666e6aff21508b687b8194`)
-        .then(res => (this.info = res))
+        .then(res => (this.info = res.data))
     }
   }
 }
@@ -38,7 +50,12 @@ export default {
     <button disabled v-else>Enter your city</button>
     <p class="error">{{ error }}</p>
 
-    <p v-show="info != null">{{ info }}</p>
+    <div v-if="info != null">
+      <p>{{ showTemp }}</p>
+      <p>{{ showFeelsLike }}</p>
+      <p>{{ showMinTemp }}</p>
+      <p>{{ showMaxTemp }}</p>
+    </div>
   </div>
 </template>
 
