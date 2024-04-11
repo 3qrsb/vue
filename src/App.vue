@@ -4,6 +4,11 @@ export default {
     return {
       city: ""
     }
+  },
+  computed: {
+    cityName() {
+      return "«" + this.city + "»"
+    }
   }
 }
 </script>
@@ -11,9 +16,10 @@ export default {
 <template>
   <div class="wrapper">
     <h1>Weather App</h1>
-    <p>Weather in {{ city }}</p>
-    <input type="text" v-on:input="this.city = $event.target.value" placeholder="Enter City">
-    <button>See weather</button>
+    <p>Weather in {{ city == "" ? "your city" : cityName }}</p>
+    <input type="text" v-model="city" placeholder="Enter City">
+    <button v-if="city != ''">Get weather</button>
+    <button disabled v-else>Enter your city</button>
   </div>
 </template>
 
@@ -46,6 +52,12 @@ export default {
 .wrapper input:focus {
   border-bottom-color: #6e2d7d;
 }
+
+.wrapper button:disabled {
+  background: #746027;
+  cursor: not-allowed
+}
+
 .wrapper button {
   background: #e3bc4b;
   color: #fff;
