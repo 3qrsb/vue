@@ -41,6 +41,7 @@ export default {
 }
 </script>
 
+
 <template>
   <div class="wrapper">
     <h1>Weather App</h1>
