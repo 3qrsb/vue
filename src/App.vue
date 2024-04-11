@@ -1,15 +1,21 @@
+<script>
+export default {
+  data() {
+    return {
+      city: ""
+    }
+  }
+}
+</script>
+
 <template>
   <div class="wrapper">
     <h1>Weather App</h1>
-    <p>Weather in your city</p>
-    <input type="text" placeholder="City">
+    <p>Weather in {{ city }}</p>
+    <input type="text" v-on:input="this.city = $event.target.value" placeholder="Enter City">
     <button>See weather</button>
   </div>
 </template>
-
-<script>
-
-</script>
 
 <style scoped>
 .wrapper {
