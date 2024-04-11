@@ -1,13 +1,29 @@
 <script>
+import axios from 'axios'
+
 export default {
   data() {
     return {
-      city: ""
+      city: "",
+      error: "",
+      info: null
     }
   },
   computed: {
     cityName() {
       return "«" + this.city + "»"
+    }
+  },
+  methods: {
+    getWeather(){
+      if(this.city.trim().length < 2) { // this.city() != /^[a-zA-Z]+$/
+        this.error = "City name is too short"
+        return false
+      }
+      this.error = ""
+      // f26dfc5ea8666e6aff21508b687b8194
+      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&appid=f26dfc5ea8666e6aff21508b687b8194`)
+        .then(res => (this.info = res))
     }
   }
 }
@@ -18,12 +34,20 @@ export default {
     <h1>Weather App</h1>
     <p>Weather in {{ city == "" ? "your city" : cityName }}</p>
     <input type="text" v-model="city" placeholder="Enter City">
-    <button v-if="city != ''">Get weather</button>
+    <button v-if="city != ''" @click="getWeather()">Get weather</button>
     <button disabled v-else>Enter your city</button>
+    <p class="error">{{ error }}</p>
+
+    <p v-show="info != null">{{ info }}</p>
   </div>
 </template>
 
 <style scoped>
+
+.error {
+  color: #d03939;
+}
+
 .wrapper {
   width: 900px;
   height: 500px;
