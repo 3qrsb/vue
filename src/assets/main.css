@@ -6,8 +6,8 @@
 body {
     width: 100%;
     min-height: 100vh;
-    background: rgb(131,58,180);
-    background: linear-gradient(323deg, rgba(131,58,180,1) 0%, rgba(29,102,253,1) 46%, rgba(69,208,252,1) 97%);
+    background: rgb(34,193,195);
+    background: linear-gradient(194deg, rgba(34,193,195,1) 0%, rgba(253,187,43,1) 100%);
     display: flex;
     justify-content: center;
     align-items: center;
