@@ -33,7 +33,6 @@ export default {
         return false
       }
       this.error = ""
-      // f26dfc5ea8666e6aff21508b687b8194
       axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&appid=f26dfc5ea8666e6aff21508b687b8194`)
         .then(res => (this.info = res.data))
     }
